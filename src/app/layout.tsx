@@ -5,7 +5,7 @@ import "./globals.css";
 const lexend = Lexend_Mega({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Sankhya Labs",
+    title: "Sankhya Pro",
     description: "An open source zero config tool for user analytics on the web.",
 };
 

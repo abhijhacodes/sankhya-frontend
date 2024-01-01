@@ -1,0 +1,38 @@
+.steps__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid black;
+    box-shadow: black 6px 6px;
+    background-color: #ffc0cb;
+}
+
+.number__container {
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: #9723c9;
+}
+
+.number__container > h3 {
+    color: white;
+}
+
+.text__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.text__container > h4 {
+    font-weight: 700;
+}
+
+.text__container > p {
+    font-weight: 400;
+}

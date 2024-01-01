@@ -6,4 +6,26 @@
 
 :root {
     --background-color: #daf5f0;
+    --background-color-2: #fcdfff;
+}
+
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection,
+p::selection {
+    background-color: #9723c9;
+    color: white;
+}
+h1::-moz-selection,
+h2::-moz-selection,
+h3::-moz-selection,
+h4::-moz-selection,
+h5::-moz-selection,
+h6::-moz-selection,
+p::-moz-selection {
+    background-color: #9723c9;
+    color: white;
 }

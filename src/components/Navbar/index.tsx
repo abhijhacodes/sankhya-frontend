@@ -7,7 +7,7 @@ export default function NavBar() {
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbar__title__container}>
-                <h3 className={styles.navbar__title}>Sankhya Labs</h3>
+                <h3 className={styles.navbar__title}>Sankhya Pro</h3>
                 <h5 className={styles.navbar__subtitle}>संख्या</h5>
             </div>
             <Button text="Launching soon" onClick={() => {}} bgColor="#f6dfff" />

@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./cta.module.css";
-import Button from "../Button";
+import Button from "../../Button";
 
 export default function CTASection() {
     return (
