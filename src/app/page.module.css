@@ -1,8 +1,51 @@
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding: 6rem;
     min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+.hero__section {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    align-items: center;
+    width: 100%;
+    padding: 4rem 12rem;
+}
+
+@media screen and (max-width: 768px) {
+    .hero__section {
+        padding: 3rem 1rem;
+    }
+}
+
+.hero__description {
+    text-align: center;
+    font-size: calc(2rem + 1vw);
+    font-weight: 800;
+}
+
+@media screen and (max-width: 768px) {
+    .hero__description {
+        font-size: calc(2rem + 0.25vw);
+    }
+}
+
+.charts__section {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    .charts__section {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+    .charts__section {
+        flex-direction: column;
+    }
 }

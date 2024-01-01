@@ -1,0 +1,14 @@
+.cta__section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .cta__section {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
