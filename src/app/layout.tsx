@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Lexend_Mega } from "next/font/google";
+
 import "./globals.css";
+import AuthSessionWrapper from "@/components/Auth/AuthSessionWrapper";
 
 const lexend = Lexend_Mega({ subsets: ["latin"] });
 
@@ -11,8 +13,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
-            <body className={lexend.className}>{children}</body>
-        </html>
+        <AuthSessionWrapper>
+            <html lang="en">
+                <body className={lexend.className}>{children}</body>
+            </html>
+        </AuthSessionWrapper>
     );
 }
