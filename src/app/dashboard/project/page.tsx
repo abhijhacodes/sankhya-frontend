@@ -1,14 +1,18 @@
-"use client";
+export const dynamic = "force-dynamic";
 
-import { signOut } from "next-auth/react";
+import { projectServices } from "@/services/project";
 
-import Button from "@/components/Button";
+export default async function Project() {
+    const projectDetails = await projectServices.getProjectDetails();
 
-export default function Project() {
     return (
         <main>
             <h1>Project page</h1>
-            <Button text={"Signout"} onClick={signOut} />
+            <h2>Project name: {projectDetails?.project?.project_name}</h2>
+            <h2>
+                API key:
+                {projectDetails?.project?.api_key}
+            </h2>
         </main>
     );
 }

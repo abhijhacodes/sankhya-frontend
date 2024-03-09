@@ -1,3 +1,5 @@
+import Navbar from "@/components/Navbar";
+
 export default function Analytics() {
-    return "analytics page";
+    return <h1>analytics page</h1>;
 }
