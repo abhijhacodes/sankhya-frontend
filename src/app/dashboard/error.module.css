@@ -1,0 +1,10 @@
+.error__container {
+    height: 80vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.error_card {
+    background-color: #fbe8e8;
+}
