@@ -1,16 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, Flex, Popover, Typography } from "antd";
 import { AlignLeftOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 
+import { getIndianDateTime } from "@/lib/client-utils";
 import Button from "../Button";
 import styles from "./navbar.module.css";
 
 export default function Navbar() {
+    const router = useRouter();
     const { data } = useSession();
     const pathname = usePathname();
 
@@ -30,11 +32,17 @@ export default function Navbar() {
     ];
 
     const ProfilePopoverContent = () => {
+        const logoutCallback = () => {
+            signOut();
+            router.push("/");
+        };
+
         return (
             <Flex vertical gap={8}>
                 <Text>{data?.user?.name ?? "Name not available"}</Text>
                 <Text>{data?.user?.email ?? "Email not available"}</Text>
-                <Button text="Logout" onClick={signOut} bgColor="#E44236" textColor="white" size="sm" />
+                <Text>Session expires at: {getIndianDateTime(data?.expires!)}</Text>
+                <Button text="Logout" onClick={logoutCallback} bgColor="#E44236" textColor="white" size="sm" />
             </Flex>
         );
     };
