@@ -1,18 +1,16 @@
 export const dynamic = "force-dynamic";
 
+import CreateProject from "@/components/Project/CreateProject";
+import ProjectDetails from "@/components/Project/ProjectDetails";
 import { projectServices } from "@/services/project";
+import styles from "./project.module.css";
 
 export default async function Project() {
-    const projectDetails = await projectServices.getProjectDetails();
+    const projectData = await projectServices.getProjectDetails();
 
     return (
-        <main>
-            <h1>Project page</h1>
-            <h2>Project name: {projectDetails?.project?.project_name}</h2>
-            <h2>
-                API key:
-                {projectDetails?.project?.api_key}
-            </h2>
+        <main className={styles.project__container}>
+            {!projectData.project ? <CreateProject /> : <ProjectDetails projectDetails={projectData.project} />}
         </main>
     );
 }

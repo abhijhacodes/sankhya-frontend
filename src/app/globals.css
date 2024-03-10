@@ -29,3 +29,7 @@ p::-moz-selection {
     background-color: #9723c9;
     color: white;
 }
+
+.ant-card {
+    box-shadow: 2px 2px 4px black;
+}
