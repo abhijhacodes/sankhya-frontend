@@ -2,35 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
-import { Dropdown } from "antd";
-import type { MenuProps } from "antd";
+import { signOut, useSession } from "next-auth/react";
+import { Avatar, Flex, Popover, Typography } from "antd";
 import { AlignLeftOutlined } from "@ant-design/icons";
+const { Text } = Typography;
 
 import Button from "../Button";
 import styles from "./navbar.module.css";
 
-const menuItems: MenuProps["items"] = [
-    {
-        key: "1",
-        label: <Link href="/dashboard/project">Project</Link>,
-    },
-    {
-        key: "2",
-        label: <Link href="/dashboard/analytics">Analytics</Link>,
-    },
-    {
-        key: "3",
-        label: <Link href="/guide">Guide</Link>,
-    },
-    {
-        key: "4",
-        label: <Button text="Logout" onClick={signOut} bgColor="#f6dfff" />,
-    },
-];
-
 export default function Navbar() {
+    const { data } = useSession();
     const pathname = usePathname();
+
     const NavItems = [
         {
             label: "Project",
@@ -46,30 +29,58 @@ export default function Navbar() {
         },
     ];
 
+    const ProfilePopoverContent = () => {
+        return (
+            <Flex vertical gap={8}>
+                <Text>{data?.user?.name ?? "Name not available"}</Text>
+                <Text>{data?.user?.email ?? "Email not available"}</Text>
+                <Button text="Logout" onClick={signOut} bgColor="#E44236" textColor="white" size="sm" />
+            </Flex>
+        );
+    };
+
+    const NavigationPopoverContent = () => {
+        return (
+            <Flex vertical gap={8}>
+                {NavItems.map((item) => (
+                    <Link href={item.path} key={item.label}>
+                        {item.label}
+                    </Link>
+                ))}
+            </Flex>
+        );
+    };
+
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbar__title__container}>
                 <h3 className={styles.navbar__title}>Sankhya Pro</h3>
                 <h5 className={styles.navbar__subtitle}>संख्या</h5>
             </div>
-            <div className={styles.navbar__desktop}>
-                {NavItems.map((item) => (
-                    <Link
-                        key={item.label}
-                        href={item.path}
-                        className={pathname === item.path ? styles.active_link : ""}
-                    >
-                        {item.label}
-                    </Link>
-                ))}
-                <Button text="Logout" onClick={signOut} bgColor="#f6dfff" />
-            </div>
 
-            <div className={styles.navbar__mobile}>
-                <Dropdown menu={{ items: menuItems }} placement="bottomRight" arrow>
-                    <AlignLeftOutlined style={{ fontSize: "24px" }} />
-                </Dropdown>
-            </div>
+            <Flex gap={16} align="center">
+                <div className={styles.navbar__desktop}>
+                    {NavItems.map((item) => (
+                        <Link
+                            key={item.label}
+                            href={item.path}
+                            className={pathname === item.path ? styles.active_link : ""}
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
+                </div>
+
+                <div className={styles.navbar__mobile}>
+                    <Popover content={NavigationPopoverContent} title="Go to" trigger="hover" placement="bottomRight">
+                        <AlignLeftOutlined style={{ fontSize: "24px" }} />
+                    </Popover>
+                </div>
+
+                <Popover content={ProfilePopoverContent} title="Your profile" trigger="hover" placement="bottomRight">
+                    <Avatar src={data?.user?.image ?? ""} style={{ cursor: "pointer" }} />
+                </Popover>
+            </Flex>
         </nav>
     );
 }
