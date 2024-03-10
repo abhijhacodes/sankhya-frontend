@@ -1,4 +1,4 @@
-import { getCookies } from "@/lib/utils";
+import { getCookies } from "@/lib/server-utils";
 import DefaultAxiosInstance from "./clients/axios";
 import { ProjectDetailsProps } from "@/components/Project/ProjectDetails";
 
