@@ -85,7 +85,7 @@ export default function CreateProject() {
                             <Input placeholder="Please enter your client URL of your project. This cannot be changed later." />
                         </FormItem>
 
-                        <Flex justify="center" className={styles.submit_btn__container}>
+                        <Flex justify="center" gap={16} className={styles.submit_btn__container}>
                             <Button
                                 text="Create project"
                                 onClick={() => {}}
@@ -94,6 +94,13 @@ export default function CreateProject() {
                                 type="submit"
                                 isLoading={apiLoading}
                                 loadingText="Creating project"
+                            />
+                            <Button
+                                text="Cancel"
+                                onClick={() => setIsFormOpen(false)}
+                                bgColor="#E44236"
+                                textColor="white"
+                                type="button"
                             />
                         </Flex>
                     </Form>
