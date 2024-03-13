@@ -1,20 +1,8 @@
 import { ResponsiveLine } from "@nivo/line";
-import { formatDate } from "@/lib/client-utils";
+import CustomTooltip from "./CustomTooltip";
+import { TrendChartProps } from "./types";
 
-type TrendChartProps = {
-    data: any;
-    legend: string;
-};
-
-const CustomTooltip = ({ point: { data } }: any) => {
-    return (
-        <div className="custom-chart-toolip">
-            {data?.yFormatted} visitors on {formatDate(data?.xFormatted)}
-        </div>
-    );
-};
-
-export default function TrendChart({ data, legend }: TrendChartProps) {
+export default function DaywiseTrendChart({ data, legend }: TrendChartProps) {
     return (
         <div style={{ height: "320px" }}>
             <ResponsiveLine
@@ -53,7 +41,7 @@ export default function TrendChart({ data, legend }: TrendChartProps) {
                 enableSlices={false}
                 enableGridX={false}
                 enableArea
-                tooltip={(data) => CustomTooltip(data)}
+                tooltip={(data) => CustomTooltip({ chartData: data, type: "daywise" })}
             />
         </div>
     );

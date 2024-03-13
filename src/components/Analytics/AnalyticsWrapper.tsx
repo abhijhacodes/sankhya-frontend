@@ -6,14 +6,29 @@ type AnalyticsWrapperProps = {
     title: string;
     isLoading: boolean;
     isError: boolean;
+    isDataAvailable: boolean;
     children: ReactNode;
 };
 
-export default function AnalyticsWrapper({ title, isLoading, isError, children }: AnalyticsWrapperProps) {
+export default function AnalyticsWrapper({
+    title,
+    isLoading,
+    isError,
+    isDataAvailable,
+    children,
+}: AnalyticsWrapperProps) {
     return (
         <Card className="analytics-card">
             <Title level={5}>{title}</Title>
-            {isLoading ? <Skeleton /> : isError ? "Something went wrong. Please try again." : children}
+            {isLoading ? (
+                <Skeleton />
+            ) : isError ? (
+                "Something went wrong. Please try again."
+            ) : !isDataAvailable ? (
+                "No data available"
+            ) : (
+                children
+            )}
         </Card>
     );
 }

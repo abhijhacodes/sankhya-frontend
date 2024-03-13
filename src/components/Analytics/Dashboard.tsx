@@ -9,10 +9,11 @@ import dayjs from "dayjs";
 import styles from "./dashboard.module.css";
 import AnalyticsWrapper from "./AnalyticsWrapper";
 import PieChart from "./Charts/PieChart";
-import TrendChart from "./Charts/TrendChart";
 import { ChartColors } from "./constants";
 import { useGetAnalyticsData } from "@/lib/hooks/analytics";
-import { formatDate, getSevenDaysAgoDate, getTodayDate } from "@/lib/client-utils";
+import { convertPeriodToHour, formatDate, getSevenDaysAgoDate, getTodayDate } from "@/lib/client-utils";
+import DaywiseTrendChart from "./Charts/TrendChart/DaywiseTrendChart";
+import HourwiseTrendChart from "./Charts/TrendChart/HourwiseTrendChart";
 
 type DashboardProps = {
     projectId: string;
@@ -41,6 +42,7 @@ export default function Dashboard({ projectId }: DashboardProps) {
                         title="Total visitors"
                         isLoading={analyticsData?.totalVisitors?.loading}
                         isError={Boolean(analyticsData?.totalVisitors?.error)}
+                        isDataAvailable={Boolean(analyticsData?.totalVisitors?.data?.totalVisitors)}
                     >
                         <Title level={3} style={{ margin: "0" }}>
                             {analyticsData?.totalVisitors?.data?.totalVisitors}
@@ -76,8 +78,9 @@ export default function Dashboard({ projectId }: DashboardProps) {
                         title="Total visitors trend"
                         isLoading={analyticsData?.visitorsTrend?.loading}
                         isError={Boolean(analyticsData?.visitorsTrend?.error)}
+                        isDataAvailable={Boolean(analyticsData?.visitorsTrend?.data?.length)}
                     >
-                        <TrendChart
+                        <DaywiseTrendChart
                             data={[
                                 {
                                     id: "totalVisitorsTrend",
@@ -97,6 +100,7 @@ export default function Dashboard({ projectId }: DashboardProps) {
                         title="Top 10 cities by visitors count"
                         isLoading={analyticsData?.topCities?.loading}
                         isError={Boolean(analyticsData?.topCities?.error)}
+                        isDataAvailable={Boolean(analyticsData?.topCities?.data?.length)}
                     >
                         <PieChart
                             data={analyticsData?.topCities?.data?.map((item: any) => ({
@@ -113,6 +117,7 @@ export default function Dashboard({ projectId }: DashboardProps) {
                         title="Top 10 states by visitors count"
                         isLoading={analyticsData?.topStates?.loading}
                         isError={Boolean(analyticsData?.topStates?.error)}
+                        isDataAvailable={Boolean(analyticsData?.topStates?.data?.length)}
                     >
                         <PieChart
                             data={analyticsData?.topStates?.data?.map((item: any) => ({
@@ -121,6 +126,28 @@ export default function Dashboard({ projectId }: DashboardProps) {
                                 value: item.value,
                             }))}
                             colors={ChartColors.topStates}
+                        />
+                    </AnalyticsWrapper>
+                </Col>
+
+                <Col span={24}>
+                    <AnalyticsWrapper
+                        title="Hour by hour traffic trend"
+                        isLoading={analyticsData?.trafficTrend?.loading}
+                        isError={Boolean(analyticsData?.trafficTrend?.error)}
+                        isDataAvailable={Boolean(analyticsData?.trafficTrend?.data?.length)}
+                    >
+                        <HourwiseTrendChart
+                            data={[
+                                {
+                                    id: "trafficTrend",
+                                    data: analyticsData?.trafficTrend?.data?.map((item: any, index: number) => ({
+                                        x: convertPeriodToHour(item.period, index),
+                                        y: item.value,
+                                    })),
+                                },
+                            ]}
+                            legend="Total visitors in hour"
                         />
                     </AnalyticsWrapper>
                 </Col>

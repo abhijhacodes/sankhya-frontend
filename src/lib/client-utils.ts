@@ -37,3 +37,12 @@ export const getPercentageValue = ({
     const percentage = (value / total) * 100;
     return keepDecimals ? Math.floor(percentage * 100) / 100 : Math.round(percentage);
 };
+
+export const convertPeriodToHour = (period: string, index: number) => {
+    const [startHour, endHour] = period.split("-");
+    const startHourNumber = (parseInt(startHour) + 12) % 12 || 12;
+    const endHourNumber = (parseInt(endHour) + 12) % 12 || 12;
+    return `${startHourNumber}${index < 12 ? "AM" : "PM"} - ${endHourNumber}${
+        index >= 11 && index <= 22 ? "PM" : "AM"
+    }`;
+};

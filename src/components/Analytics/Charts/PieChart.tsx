@@ -22,7 +22,7 @@ const DefaultPieChartColors = [
 ];
 
 export default function PieChart({ data, colors }: TrendChartProps) {
-    const total = data.reduce((acc: number, item: any) => acc + item.value, 0);
+    const total = data?.reduce((acc: number, item: any) => acc + item.value, 0);
     const PieChartColors = colors ?? DefaultPieChartColors;
 
     return (
