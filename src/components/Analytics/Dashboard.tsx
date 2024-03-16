@@ -126,7 +126,7 @@ export default function Dashboard({ projectId }: DashboardProps) {
                         isDataAvailable={Boolean(analyticsData?.topCities?.data?.length)}
                     >
                         <PieChart
-                            data={analyticsData?.topCities?.data?.slice(10)?.map((item: any) => ({
+                            data={analyticsData?.topCities?.data?.slice(0, 10)?.map((item: any) => ({
                                 id: item.name,
                                 label: item.name,
                                 value: item.value,
@@ -143,7 +143,7 @@ export default function Dashboard({ projectId }: DashboardProps) {
                         isDataAvailable={Boolean(analyticsData?.topStates?.data?.length)}
                     >
                         <PieChart
-                            data={analyticsData?.topStates?.data?.slice(10)?.map((item: any) => ({
+                            data={analyticsData?.topStates?.data?.slice(0, 10)?.map((item: any) => ({
                                 id: item.name,
                                 label: item.name,
                                 value: item.value,
