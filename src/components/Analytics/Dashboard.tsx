@@ -12,7 +12,7 @@ import AnalyticsWrapper from "./AnalyticsWrapper";
 import PieChart from "./Charts/PieChart";
 import { ChartColors } from "./constants";
 import { useGetAnalyticsData } from "@/lib/hooks/analytics";
-import { convertPeriodToHour, formatDate, getSevenDaysAgoDate, getTodayDate } from "@/lib/client-utils";
+import { convertPeriodToHour, formatDate } from "@/lib/client-utils";
 import DaywiseTrendChart from "./Charts/TrendChart/DaywiseTrendChart";
 import HourwiseTrendChart from "./Charts/TrendChart/HourwiseTrendChart";
 
@@ -22,8 +22,8 @@ type DashboardProps = {
 
 export default function Dashboard({ projectId }: DashboardProps) {
     const [selectedDateRange, setSelectedDateRange] = useState<any>({
-        startDate: getSevenDaysAgoDate(),
-        endDate: getTodayDate(),
+        startDate: dayjs().subtract(6, "day").startOf("day").toISOString(),
+        endDate: dayjs().endOf("day").toISOString(),
     });
 
     const onDateChange = (dates: any) => {
@@ -33,7 +33,7 @@ export default function Dashboard({ projectId }: DashboardProps) {
         });
     };
 
-    const analyticsData = useGetAnalyticsData(projectId);
+    const analyticsData = useGetAnalyticsData(projectId, selectedDateRange);
 
     return (
         <div className={styles.dashboard__container}>
@@ -55,7 +55,6 @@ export default function Dashboard({ projectId }: DashboardProps) {
                     <Flex justify="center" align="flexStart" vertical style={{ height: "100%" }} gap={8}>
                         <RangePicker
                             onChange={onDateChange}
-                            format="YYYY-MM-DD"
                             value={[dayjs(selectedDateRange.startDate), dayjs(selectedDateRange.endDate)]}
                             disabledDate={(current) => {
                                 return current && current > dayjs().endOf("day");
@@ -177,7 +176,7 @@ export default function Dashboard({ projectId }: DashboardProps) {
                         isLoading={analyticsData?.topCountries?.loading}
                         isError={Boolean(analyticsData?.topCountries?.error)}
                         isDataAvailable={Boolean(analyticsData?.topCountries?.data?.length)}
-                        centerContent
+                        centerContent={Boolean(analyticsData?.topCountries?.data?.length)}
                     >
                         <WorldMap
                             color="#2B2B52"

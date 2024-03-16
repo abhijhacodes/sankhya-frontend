@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
+import dayjs from "dayjs";
 
 import DefaultAxiosInstance from "@/services/clients/axios";
 import { analyticsEndpoints } from "../constants";
@@ -12,10 +13,17 @@ interface AnalyticsState {
 
 type AnalyticsEndpointType = (typeof analyticsEndpoints)[number];
 
-export const useGetAnalyticsData = (projectId: string) => {
+export const useGetAnalyticsData = (projectId: string, dateRange: any) => {
     const [analyticsStates, setAnalyticsStates] = useState<Record<AnalyticsEndpointType, AnalyticsState>>(
         {} as Record<AnalyticsEndpointType, AnalyticsState>
     );
+
+    const parseDate = (date: Date, type: "start" | "end") => {
+        if (type === "start") {
+            return dayjs(date).startOf("day").toISOString();
+        }
+        return dayjs(date).endOf("day").toISOString();
+    };
 
     useEffect(() => {
         const fetchAllAnalyticsData = async () => {
@@ -30,8 +38,8 @@ export const useGetAnalyticsData = (projectId: string) => {
 
                             const response = await DefaultAxiosInstance.post(`/analytics/${endpoint}`, {
                                 project_ids: [projectId],
-                                start_date: "2024-01-01",
-                                end_date: "2024-03-10",
+                                start_date: parseDate(dateRange?.startDate, "start"),
+                                end_date: parseDate(dateRange?.endDate, "end"),
                             });
 
                             setAnalyticsStates((prevStates) => ({
@@ -52,7 +60,7 @@ export const useGetAnalyticsData = (projectId: string) => {
         };
 
         fetchAllAnalyticsData();
-    }, []);
+    }, [projectId, dateRange]);
 
     return analyticsStates;
 };

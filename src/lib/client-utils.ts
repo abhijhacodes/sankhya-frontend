@@ -12,16 +12,6 @@ export const formatDate = (date: string) => {
     });
 };
 
-export const getTodayDate = () => {
-    return new Date().toISOString().split("T")[0];
-};
-
-export const getSevenDaysAgoDate = () => {
-    const date = new Date();
-    date.setDate(date.getDate() - 6);
-    return date.toISOString().split("T")[0];
-};
-
 export const getPercentageValue = ({
     value,
     total,
