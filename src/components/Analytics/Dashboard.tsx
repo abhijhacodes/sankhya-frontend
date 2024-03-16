@@ -5,6 +5,7 @@ import { Col, Flex, Row, Typography, DatePicker } from "antd";
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 import dayjs from "dayjs";
+import WorldMap from "react-svg-worldmap";
 
 import styles from "./dashboard.module.css";
 import AnalyticsWrapper from "./AnalyticsWrapper";
@@ -97,6 +98,28 @@ export default function Dashboard({ projectId }: DashboardProps) {
 
                 <Col span={24}>
                     <AnalyticsWrapper
+                        title="Hour by hour traffic trend"
+                        isLoading={analyticsData?.trafficTrend?.loading}
+                        isError={Boolean(analyticsData?.trafficTrend?.error)}
+                        isDataAvailable={Boolean(analyticsData?.trafficTrend?.data?.length)}
+                    >
+                        <HourwiseTrendChart
+                            data={[
+                                {
+                                    id: "trafficTrend",
+                                    data: analyticsData?.trafficTrend?.data?.map((item: any, index: number) => ({
+                                        x: convertPeriodToHour(item.period, index),
+                                        y: item.value,
+                                    })),
+                                },
+                            ]}
+                            legend="Total visitors in hour"
+                        />
+                    </AnalyticsWrapper>
+                </Col>
+
+                <Col span={24}>
+                    <AnalyticsWrapper
                         title="Top 10 cities by visitors count"
                         isLoading={analyticsData?.topCities?.loading}
                         isError={Boolean(analyticsData?.topCities?.error)}
@@ -132,22 +155,37 @@ export default function Dashboard({ projectId }: DashboardProps) {
 
                 <Col span={24}>
                     <AnalyticsWrapper
-                        title="Hour by hour traffic trend"
-                        isLoading={analyticsData?.trafficTrend?.loading}
-                        isError={Boolean(analyticsData?.trafficTrend?.error)}
-                        isDataAvailable={Boolean(analyticsData?.trafficTrend?.data?.length)}
+                        title="Top operating systems"
+                        isLoading={analyticsData?.operatingSystems?.loading}
+                        isError={Boolean(analyticsData?.operatingSystems?.error)}
+                        isDataAvailable={Boolean(analyticsData?.operatingSystems?.data?.length)}
                     >
-                        <HourwiseTrendChart
-                            data={[
-                                {
-                                    id: "trafficTrend",
-                                    data: analyticsData?.trafficTrend?.data?.map((item: any, index: number) => ({
-                                        x: convertPeriodToHour(item.period, index),
-                                        y: item.value,
-                                    })),
-                                },
-                            ]}
-                            legend="Total visitors in hour"
+                        <PieChart
+                            data={analyticsData?.operatingSystems?.data?.map((item: any) => ({
+                                id: item.name,
+                                label: item.name,
+                                value: item.value,
+                            }))}
+                            colors={{ scheme: "category10" }}
+                        />
+                    </AnalyticsWrapper>
+                </Col>
+
+                <Col span={24}>
+                    <AnalyticsWrapper
+                        title="Top countries by visitors count"
+                        isLoading={analyticsData?.topCountries?.loading}
+                        isError={Boolean(analyticsData?.topCountries?.error)}
+                        isDataAvailable={Boolean(analyticsData?.topCountries?.data?.length)}
+                        centerContent
+                    >
+                        <WorldMap
+                            color="#2B2B52"
+                            size="xl"
+                            data={analyticsData?.topCountries?.data?.map((item: any) => ({
+                                country: item.name,
+                                value: item.value,
+                            }))}
                         />
                     </AnalyticsWrapper>
                 </Col>

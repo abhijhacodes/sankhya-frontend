@@ -8,6 +8,7 @@ type AnalyticsWrapperProps = {
     isError: boolean;
     isDataAvailable: boolean;
     children: ReactNode;
+    centerContent?: boolean;
 };
 
 export default function AnalyticsWrapper({
@@ -16,18 +17,28 @@ export default function AnalyticsWrapper({
     isError,
     isDataAvailable,
     children,
+    centerContent = false,
 }: AnalyticsWrapperProps) {
+    const getContent = () => {
+        if (isLoading) {
+            return <Skeleton />;
+        }
+        if (isError) {
+            return "Something went wrong. Please try again.";
+        }
+        if (!isDataAvailable) {
+            return "No data available";
+        }
+        return children;
+    };
+
     return (
         <Card className="analytics-card">
             <Title level={5}>{title}</Title>
-            {isLoading ? (
-                <Skeleton />
-            ) : isError ? (
-                "Something went wrong. Please try again."
-            ) : !isDataAvailable ? (
-                "No data available"
+            {centerContent ? (
+                <div style={{ width: "100%", display: "grid", placeItems: "center" }}>{getContent()}</div>
             ) : (
-                children
+                getContent()
             )}
         </Card>
     );
