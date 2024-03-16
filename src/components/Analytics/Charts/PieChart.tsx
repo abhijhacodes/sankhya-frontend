@@ -1,11 +1,9 @@
 import { getPercentageValue } from "@/lib/client-utils";
 import { ResponsivePie } from "@nivo/pie";
-import { Flex } from "antd";
-import styles from "./charts.module.css";
 
 type TrendChartProps = {
     data: any;
-    colors?: string[];
+    colors?: any;
 };
 
 const DefaultPieChartColors = [
@@ -26,7 +24,7 @@ export default function PieChart({ data, colors }: TrendChartProps) {
     const PieChartColors = colors ?? DefaultPieChartColors;
 
     return (
-        <div className={styles.piechart__container}>
+        <div style={{ height: "320px" }}>
             <ResponsivePie
                 data={data}
                 margin={{ top: 30, right: 30, bottom: 30, left: 30 }}
@@ -41,23 +39,11 @@ export default function PieChart({ data, colors }: TrendChartProps) {
                     modifiers: [["darker", 0.2]],
                 }}
                 arcLabel={(datum) => `${datum.value} (${getPercentageValue({ value: datum.value, total })}%)`}
-                enableArcLinkLabels={false}
+                arcLinkLabelsDiagonalLength={12}
+                arcLinkLabelsStraightLength={16}
                 arcLabelsSkipAngle={20}
                 arcLabelsTextColor={"white"}
             />
-            <div className={styles.legend__grid}>
-                {data.map((item: any, index: number) => (
-                    <Flex align="center" key={item.id}>
-                        <div
-                            className={styles.legend__box}
-                            style={{
-                                backgroundColor: PieChartColors[index % PieChartColors.length],
-                            }}
-                        />
-                        <span>{item.id}</span>
-                    </Flex>
-                ))}
-            </div>
         </div>
     );
 }
