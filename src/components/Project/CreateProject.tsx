@@ -10,6 +10,7 @@ import DefaultAxiosInstance from "@/services/clients/axios";
 import styles from "./projectcomponents.module.css";
 import Button from "../Button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type FieldType = {
     project_name?: string;
@@ -17,6 +18,7 @@ type FieldType = {
 };
 
 export default function CreateProject() {
+    const router = useRouter();
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [apiLoading, setApiLoading] = useState(false);
     const [notificationAPI, notificationContext] = notification.useNotification();
@@ -34,6 +36,7 @@ export default function CreateProject() {
                 "Successfully created your new project. You can now start using this to capture events."
             );
             setApiLoading(false);
+            router.refresh();
         } catch (error: any) {
             openNotificationWithIcon("error", "Project creation failed", error.response.data.message);
             setApiLoading(false);
