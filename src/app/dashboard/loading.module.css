@@ -1,0 +1,14 @@
+.container {
+    height: 80vh;
+    width: 60vw;
+    margin: 0 auto;
+}
+
+.heading {
+    margin: 0 !important;
+    font-weight: 700 !important;
+}
+
+.subheading {
+    margin: 0 !important;
+}

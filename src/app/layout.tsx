@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <AuthSessionWrapper>
-            <html lang="en">
+            <html lang="en" style={{ background: "#eaf0f1" }}>
                 <body className={lexend.className}>{children}</body>
             </html>
         </AuthSessionWrapper>

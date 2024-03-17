@@ -21,7 +21,7 @@ export default function AnalyticsWrapper({
 }: AnalyticsWrapperProps) {
     const getContent = () => {
         if (isLoading) {
-            return <Skeleton />;
+            return <Skeleton active />;
         }
         if (isError) {
             return "Something went wrong. Please try again.";
