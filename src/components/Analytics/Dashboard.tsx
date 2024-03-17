@@ -1,20 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Col, Flex, Row, Typography, DatePicker } from "antd";
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 import dayjs from "dayjs";
-import WorldMap from "react-svg-worldmap";
 
 import styles from "./dashboard.module.css";
 import AnalyticsWrapper from "./AnalyticsWrapper";
-import PieChart from "./Charts/PieChart";
 import { ChartColors } from "./constants";
 import { useGetAnalyticsData } from "@/lib/hooks/analytics";
 import { convertPeriodToHour, formatDate } from "@/lib/client-utils";
-import DaywiseTrendChart from "./Charts/TrendChart/DaywiseTrendChart";
-import HourwiseTrendChart from "./Charts/TrendChart/HourwiseTrendChart";
+
+const PieChart = dynamic(() => import("./Charts/PieChart"));
+const DaywiseTrendChart = dynamic(() => import("./Charts/TrendChart/DaywiseTrendChart"));
+const HourwiseTrendChart = dynamic(() => import("./Charts/TrendChart/HourwiseTrendChart"));
+const WorldMap = dynamic(() => import("react-svg-worldmap"));
 
 type DashboardProps = {
     projectId: string;
