@@ -1,6 +1,6 @@
 "use client";
 
-import { RedoOutlined } from "@ant-design/icons";
+import { LoadingOutlined, RedoOutlined } from "@ant-design/icons";
 import styles from "./button.module.css";
 import { ReactNode } from "react";
 
@@ -33,7 +33,7 @@ export default function Button({
             onClick={onClick}
             style={{ backgroundColor: bgColor ?? "", color: textColor ?? "" }}
         >
-            {isLoading ? <RedoOutlined className={styles.spinner} /> : null} {isLoading ? loadingText : text} {icon}
+            {isLoading ? <LoadingOutlined /> : null} {isLoading ? loadingText : text} {icon}
         </button>
     );
 }
