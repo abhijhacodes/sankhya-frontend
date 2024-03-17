@@ -8,7 +8,7 @@ const lexend = Lexend_Mega({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Sankhya Pro",
-    description: "An open source zero config tool for user analytics on the web.",
+    description: "An open source and free zero config tool for user analytics on the web.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

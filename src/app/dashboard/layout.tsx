@@ -6,7 +6,8 @@ const lexend = Lexend_Mega({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Sankhya Pro - Dashboard",
-    description: "Analytics dashboard of Sankhya Pro, an open source zero config tool for user analytics on the web.",
+    description:
+        "Analytics dashboard of Sankhya Pro, an open source and free zero config tool for user analytics on the web.",
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
