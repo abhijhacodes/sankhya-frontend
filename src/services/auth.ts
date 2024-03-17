@@ -1,10 +1,19 @@
-import DefaultAxiosInstance from "./clients/axios";
+import axios from "axios";
 
 const LoginUserToSankhya = async (email: string) => {
     try {
-        await DefaultAxiosInstance.post("/auth/login", {
-            email,
-        });
+        await axios.post(
+            "/api/login",
+            {
+                email,
+            },
+            {
+                withCredentials: true,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
         return true;
     } catch (error) {
         return false;
