@@ -1,12 +1,12 @@
 import Image from "next/image";
-import NavBar from "../Navbar";
+import HeroHeader from "../Navbar/Header";
 import styles from "./hero.module.css";
 import CTASection from "./CTASection";
 
 export default function HeroSection() {
     return (
         <div className={styles.home__section}>
-            <NavBar />
+            <HeroHeader />
             <div className={styles.hero__section}>
                 <h2 className={styles.hero__description}>
                     Get useful insights about your users and traffic without any hassle

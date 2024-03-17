@@ -1,0 +1,11 @@
+.dashboard__container {
+    width: 80%;
+    max-width: 1080px;
+    margin: 0 auto 2rem auto;
+}
+
+@media screen and (max-width: 900px) {
+    .dashboard__container {
+        width: 100%;
+    }
+}

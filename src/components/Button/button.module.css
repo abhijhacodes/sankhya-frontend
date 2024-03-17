@@ -17,7 +17,7 @@
 }
 
 .sm__btn {
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.75rem;
 }
 
 .md__btn {
@@ -28,6 +28,12 @@
     padding: 0.75rem 5rem;
     font-size: 1.2rem;
     box-shadow: black 6px 6px;
+}
+
+.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 @media screen and (max-width: 768px) {
