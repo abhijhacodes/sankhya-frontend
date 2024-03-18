@@ -5,7 +5,7 @@ const stepsData: StepsCardProps[] = [
     {
         stepNumber: 1,
         title: "Login to Sankhya Pro",
-        description: "You can login using your Google, Twitter or Github account.",
+        description: "You can only login using your Github account.",
     },
     {
         stepNumber: 2,
