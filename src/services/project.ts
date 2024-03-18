@@ -11,7 +11,7 @@ const getProjectDetails = async () => {
         });
         return res.data;
     } catch (error: unknown) {
-        throw new Error("An error occured while fetching project details. Please try again later.");
+        throw new Error("An error occured while fetching your project details. Please try again later.");
     }
 };
 

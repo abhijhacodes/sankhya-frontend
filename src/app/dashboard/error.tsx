@@ -3,5 +3,10 @@
 import ErrorUI from "@/components/ErrorUI";
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-    return <ErrorUI message={error.message} retryCallback={reset} />;
+    return (
+        <ErrorUI
+            message="An error occured while fetching your project details. Please try again later."
+            retryCallback={reset}
+        />
+    );
 }
