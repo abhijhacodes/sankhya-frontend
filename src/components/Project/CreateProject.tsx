@@ -88,7 +88,7 @@ export default function CreateProject() {
                             <Input placeholder="Please enter your client URL of your project. This cannot be changed later." />
                         </FormItem>
 
-                        <Flex justify="center" gap={16} className={styles.submit_btn__container}>
+                        <Flex align="center" justify="center" gap={16} className={styles.submit_btn__container}>
                             <Button
                                 text="Create project"
                                 onClick={() => {}}
@@ -124,7 +124,7 @@ export default function CreateProject() {
                                 />
                             </Flex>
                             <Text>Create a new project to get started. Or see our guide on how to do it.</Text>
-                            <Flex gap={16}>
+                            <Flex gap={16} align="center" justify="center">
                                 <Button
                                     text="Create new project"
                                     onClick={() => setIsFormOpen(true)}
