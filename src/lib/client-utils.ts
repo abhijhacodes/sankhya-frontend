@@ -36,3 +36,10 @@ export const convertPeriodToHour = (period: string, index: number) => {
         index >= 11 && index <= 22 ? "PM" : "AM"
     }`;
 };
+
+export const getClientSideHeaders = () => {
+    return {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${document?.cookie?.split("=")[1]}`,
+    };
+};

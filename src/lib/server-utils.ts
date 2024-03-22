@@ -1,5 +1,8 @@
 import { cookies } from "next/headers";
 
-export const getCookies = () => {
-    return `token=${cookies().get("token")?.value}`;
+export const getServerSideHeaders = () => {
+    return {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${cookies().get("token")?.value}`,
+    };
 };

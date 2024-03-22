@@ -11,6 +11,7 @@ import styles from "./projectcomponents.module.css";
 import Button from "../Button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { getClientSideHeaders } from "@/lib/client-utils";
 
 type FieldType = {
     project_name?: string;
@@ -26,10 +27,16 @@ export default function CreateProject() {
     const createProjectCallback: FormProps<FieldType>["onFinish"] = async (values) => {
         try {
             setApiLoading(true);
-            await DefaultAxiosInstance.post("/project", {
-                project_name: values.project_name,
-                project_client_url: values.project_client_url,
-            });
+            await DefaultAxiosInstance.post(
+                "/project",
+                {
+                    project_name: values.project_name,
+                    project_client_url: values.project_client_url,
+                },
+                {
+                    headers: getClientSideHeaders(),
+                }
+            );
             openNotificationWithIcon(
                 "success",
                 "Project created successfully",

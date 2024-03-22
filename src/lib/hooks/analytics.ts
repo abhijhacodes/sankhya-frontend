@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 
 import DefaultAxiosInstance from "@/services/clients/axios";
 import { analyticsEndpoints } from "../constants";
+import { getClientSideHeaders } from "../client-utils";
 
 interface AnalyticsState {
     loading: boolean;
@@ -36,11 +37,17 @@ export const useGetAnalyticsData = (projectId: string, dateRange: any) => {
                                 [endpoint]: { loading: true, error: null, data: null },
                             }));
 
-                            const response = await DefaultAxiosInstance.post(`/analytics/${endpoint}`, {
-                                project_ids: [projectId],
-                                start_date: parseDate(dateRange?.startDate, "start"),
-                                end_date: parseDate(dateRange?.endDate, "end"),
-                            });
+                            const response = await DefaultAxiosInstance.post(
+                                `/analytics/${endpoint}`,
+                                {
+                                    project_ids: [projectId],
+                                    start_date: parseDate(dateRange?.startDate, "start"),
+                                    end_date: parseDate(dateRange?.endDate, "end"),
+                                },
+                                {
+                                    headers: getClientSideHeaders(),
+                                }
+                            );
 
                             setAnalyticsStates((prevStates) => ({
                                 ...prevStates,
