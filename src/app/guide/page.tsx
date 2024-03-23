@@ -77,7 +77,7 @@ export default function Guide() {
                             <a href="#integrate-sdk">Integrate Sankhya SDK in your project</a>
                         </li>
                         <li>
-                            <a href="#user-dashboard">Use analytics dashboard</a>
+                            <a href="#use-dashboard">Use analytics dashboard</a>
                         </li>
                         <li>
                             <a href="#faqs">Frequently asked questions</a>
