@@ -12,6 +12,7 @@ export default function CopyToClipboard({ text }: CopyToClipboardProps) {
         <Paragraph
             copyable={{
                 tooltips: ["Copy to clipboard", "Copied to clipboard!"],
+                text: text,
             }}
         >
             <code>{text}</code>
