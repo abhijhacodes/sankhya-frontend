@@ -8,6 +8,6 @@ export const analyticsEndpoints = [
     "topStates",
     "topCountries",
     "operatingSystems",
-    "topDeviceSizes",
+    // "topDeviceSizes",
     "trafficTrend",
 ] as const;
