@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getClientSideHeaders } from "@/lib/client-utils";
 
 const LoginUserToSankhya = async (email: string) => {
     try {
@@ -9,9 +10,7 @@ const LoginUserToSankhya = async (email: string) => {
             },
             {
                 withCredentials: true,
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: getClientSideHeaders(),
             }
         );
         return true;
@@ -20,4 +19,4 @@ const LoginUserToSankhya = async (email: string) => {
     }
 };
 
-export const authServices = { LoginUserToSankhya };
+export const clientAuthServices = { LoginUserToSankhya };

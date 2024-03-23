@@ -1,4 +1,4 @@
-import DefaultAxiosInstance from "@/services/clients/axios";
+import DefaultAxiosInstance from "@/services/api-client";
 
 export async function POST(req: Request) {
     if (req.method === "POST") {

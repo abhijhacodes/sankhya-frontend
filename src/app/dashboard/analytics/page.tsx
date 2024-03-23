@@ -2,11 +2,11 @@ export const dynamic = "force-dynamic";
 
 import Dashboard from "@/components/Analytics/Dashboard";
 import CreateProject from "@/components/Project/CreateProject";
-import { projectServices } from "@/services/project";
+import { serverProjectServices } from "@/services/server/project";
 import styles from "../project/project.module.css";
 
 export default async function Analytics() {
-    const projectData = await projectServices.getProjectDetails();
+    const projectData = await serverProjectServices.getProjectDetails();
 
     if (!projectData.project) {
         return (

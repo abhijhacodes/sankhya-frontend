@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
 import dayjs from "dayjs";
 
-import DefaultAxiosInstance from "@/services/clients/axios";
 import { analyticsEndpoints } from "../constants";
 import { getClientSideHeaders } from "../client-utils";
+import DefaultAxiosInstance from "@/services/api-client";
 
 interface AnalyticsState {
     loading: boolean;

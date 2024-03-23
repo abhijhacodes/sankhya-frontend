@@ -9,7 +9,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 
 import styles from "./gettingready.module.css";
-import { authServices } from "@/services/auth";
+import { clientAuthServices } from "@/services/client/auth";
 
 export default function GettingReady() {
     const { data: sessionDetails } = useSession();
@@ -18,7 +18,7 @@ export default function GettingReady() {
     useEffect(() => {
         if (!sessionDetails?.user?.email) return;
         (async () => {
-            const isLoginSuccessFul = await authServices.LoginUserToSankhya(sessionDetails?.user?.email!);
+            const isLoginSuccessFul = await clientAuthServices.LoginUserToSankhya(sessionDetails?.user?.email!);
             if (isLoginSuccessFul) {
                 router.push("/dashboard/project");
             } else {

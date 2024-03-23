@@ -1,17 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Card, Flex, Form, Typography, Input, type FormProps, notification } from "antd";
 const { Title, Text } = Typography;
 const { Item: FormItem } = Form;
 
 import { NotificationType, URL_REGEX } from "@/lib/constants";
-import DefaultAxiosInstance from "@/services/clients/axios";
 import styles from "./projectcomponents.module.css";
 import Button from "../Button";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { getClientSideHeaders } from "@/lib/client-utils";
+import { clientProjectServices } from "@/services/client/project";
 
 type FieldType = {
     project_name?: string;
@@ -27,16 +26,12 @@ export default function CreateProject() {
     const createProjectCallback: FormProps<FieldType>["onFinish"] = async (values) => {
         try {
             setApiLoading(true);
-            await DefaultAxiosInstance.post(
-                "/project",
-                {
+            await clientProjectServices.createNewProject({
+                projectDetails: {
                     project_name: values.project_name,
                     project_client_url: values.project_client_url,
                 },
-                {
-                    headers: getClientSideHeaders(),
-                }
-            );
+            });
             openNotificationWithIcon(
                 "success",
                 "Project created successfully",
@@ -45,7 +40,7 @@ export default function CreateProject() {
             setApiLoading(false);
             router.refresh();
         } catch (error: any) {
-            openNotificationWithIcon("error", "Project creation failed", error.response.data.message);
+            openNotificationWithIcon("error", "Project creation failed", error?.message);
             setApiLoading(false);
         }
     };
