@@ -6,6 +6,7 @@ import HeroHeader from "@/components/Navbar/Header";
 import styles from "./guide.module.css";
 import CopyToClipboard from "@/components/CopyToClipboard";
 import ScrollToTop from "@/components/ScrollToTop";
+import Footer from "@/components/Footer";
 
 const faqItems: CollapseProps["items"] = [
     {
@@ -271,6 +272,8 @@ export default function Guide() {
                     <Collapse accordion items={faqItems} defaultActiveKey={["1"]} />
                 </Flex>
             </Flex>
+
+            <Footer />
         </div>
     );
 }

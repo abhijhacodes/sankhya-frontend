@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import StepsCard, { StepsCardProps } from "./StepsCard";
 import styles from "./steps.module.css";
 
@@ -34,6 +35,8 @@ export default function StepsSection() {
                     />
                 ))}
             </div>
+
+            <Footer />
         </div>
     );
 }
