@@ -12,6 +12,7 @@ import AnalyticsWrapper from "./AnalyticsWrapper";
 import { ChartColors } from "./constants";
 import { useGetAnalyticsData } from "@/lib/hooks/analytics";
 import { convertPeriodToHour, formatDate } from "@/lib/client-utils";
+import ScrollToTop from "../ScrollToTop";
 
 const PieChart = dynamic(() => import("./Charts/PieChart"));
 const DaywiseTrendChart = dynamic(() => import("./Charts/TrendChart/DaywiseTrendChart"));
@@ -39,6 +40,8 @@ export default function Dashboard({ projectId }: DashboardProps) {
 
     return (
         <div className={styles.dashboard__container}>
+            <ScrollToTop />
+
             <Row style={{ gap: "16px" }}>
                 <Col span={7}>
                     <AnalyticsWrapper

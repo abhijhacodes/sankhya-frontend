@@ -5,6 +5,7 @@ import homeStyles from "@/components/HeroSection/hero.module.css";
 import HeroHeader from "@/components/Navbar/Header";
 import styles from "./guide.module.css";
 import CopyToClipboard from "@/components/CopyToClipboard";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const faqItems: CollapseProps["items"] = [
     {
@@ -53,6 +54,8 @@ const faqItems: CollapseProps["items"] = [
 export default function Guide() {
     return (
         <div className={homeStyles.home__section}>
+            <ScrollToTop />
+
             <HeroHeader />
 
             <Flex className={styles.container} vertical gap="32px">
