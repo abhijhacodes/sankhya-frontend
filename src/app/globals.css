@@ -44,3 +44,8 @@ p::-moz-selection {
 .analytics-card {
     box-shadow: 1px 1px 2px grey;
 }
+
+p {
+    font-size: small;
+    font-weight: 400;
+}

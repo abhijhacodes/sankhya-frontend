@@ -1,0 +1,33 @@
+.container {
+    width: 85vw;
+    margin: 1rem auto 3rem auto;
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+    .container {
+        width: 80vw;
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    .container {
+        width: 60vw;
+    }
+}
+
+.guide__img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 600px !important;
+    aspect-ratio: 1920 / 1080;
+}
+
+@media screen and (min-width: 1201px) {
+    .guide__img {
+        width: 75% !important;
+    }
+}
+
+.docs__list li {
+    margin: 0 0 8px 32px;
+}
