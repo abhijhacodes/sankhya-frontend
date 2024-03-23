@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Card, Flex, Form, Typography, Input, type FormProps, notification } from "antd";
+import { BookOutlined, ProjectOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 const { Item: FormItem } = Form;
 
@@ -132,8 +134,17 @@ export default function CreateProject() {
                                     onClick={() => setIsFormOpen(true)}
                                     bgColor="#218F76"
                                     textColor="white"
+                                    icon={<ProjectOutlined style={{ fontSize: "18px" }} />}
                                 />
-                                <Button text="See guide" onClick={() => {}} bgColor="#218F76" textColor="white" />
+                                <Link href="/guide#create-project" target="_blank">
+                                    <Button
+                                        text="See guide"
+                                        onClick={() => {}}
+                                        bgColor="#218F76"
+                                        textColor="white"
+                                        icon={<BookOutlined style={{ fontSize: "18px" }} />}
+                                    />
+                                </Link>
                             </Flex>
                         </Flex>
                     </Card>

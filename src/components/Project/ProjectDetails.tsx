@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Card, Flex, Typography } from "antd";
-import { PieChartOutlined } from "@ant-design/icons";
+import { BookOutlined, PieChartOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 
 import Button from "../Button";
@@ -39,12 +40,22 @@ export default function ProjectDetails({ projectDetails }: ProjectDetailsProps) 
                     <Text>
                         <b>API key</b>: <CopyToClipboard text={projectDetails.api_key!} />
                     </Text>
-                    <Button
-                        onClick={() => router.push("/dashboard/analytics")}
-                        text="See analytics"
-                        bgColor="#FBD28B"
-                        icon={<PieChartOutlined style={{ fontSize: "18px" }} />}
-                    />
+                    <Flex gap="8px">
+                        <Button
+                            onClick={() => router.push("/dashboard/analytics")}
+                            text="See analytics"
+                            bgColor="#FBD28B"
+                            icon={<PieChartOutlined style={{ fontSize: "18px" }} />}
+                        />
+                        <Link href="/guide#integrate-sdk" target="_blank">
+                            <Button
+                                onClick={() => {}}
+                                text="See guide"
+                                bgColor="#FBD28B"
+                                icon={<BookOutlined style={{ fontSize: "18px" }} />}
+                            />
+                        </Link>
+                    </Flex>
                 </Flex>
             </Card>
         </Flex>

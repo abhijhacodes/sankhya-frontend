@@ -51,7 +51,7 @@ export default function Navbar() {
         return (
             <Flex vertical gap={8}>
                 {NavItems.map((item) => (
-                    <Link href={item.path} key={item.label}>
+                    <Link href={item.path} key={item.label} target={item.path === "/guide" ? "_blank" : "_self"}>
                         {item.label}
                     </Link>
                 ))}
@@ -72,6 +72,7 @@ export default function Navbar() {
                         <Link
                             key={item.label}
                             href={item.path}
+                            target={item.path === "/guide" ? "_blank" : "_self"}
                             className={pathname === item.path ? styles.active_link : ""}
                         >
                             {item.label}

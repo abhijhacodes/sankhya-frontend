@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 
 import styles from "./cta.module.css";
@@ -20,7 +21,9 @@ export default function CTASection() {
     return (
         <div className={styles.cta__section}>
             <Button text="Get Started" onClick={() => signIn()} bgColor="#ff7a5c" textColor="#fff" size="lg" />
-            <Button text="See how it works" onClick={() => {}} bgColor="#ff7a5c" textColor="#fff" size="lg" />
+            <Link href="/guide" target="__blank">
+                <Button text="See how it works" onClick={() => {}} bgColor="#ff7a5c" textColor="#fff" size="lg" />
+            </Link>
         </div>
     );
 }
