@@ -11,4 +11,11 @@
         align-items: center;
         gap: 0.5rem;
     }
+
+    .cta__section > a {
+        width: 85%;
+    }
+    .cta__section > a > button {
+        width: 100%;
+    }
 }

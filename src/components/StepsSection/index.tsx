@@ -15,9 +15,9 @@ const stepsData: StepsCardProps[] = [
     },
     {
         stepNumber: 3,
-        title: "Integrate API",
+        title: "Integrate SDK",
         description:
-            "Integrate our simple API in any of your client apps and get started, no extra steps or configuration.",
+            "Integrate our simple javascript SDK in any of your client apps and get started, no extra steps or configuration.",
     },
 ];
 
