@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { Collapse, CollapseProps, Flex } from "antd";
 
+import styles from "./guide.module.css";
 import homeStyles from "@/components/HeroSection/hero.module.css";
 import HeroHeader from "@/components/Navbar/Header";
-import styles from "./guide.module.css";
-import CopyToClipboard from "@/components/CopyToClipboard";
 import ScrollToTop from "@/components/ScrollToTop";
 import Footer from "@/components/Footer";
+import CodeBlock from "@/components/CodeBlock";
 
 const faqItems: CollapseProps["items"] = [
     {
@@ -170,33 +170,22 @@ export default function Guide() {
                         </li>
                         <li>
                             <p>
-                                Load the below SDK script URL in your project, it adds a method to your browser window
+                                Load the Sankhya javascript SDK by adding the below line in the {"<head>"} of your HTML
+                                file.
                             </p>
-                            <CopyToClipboard text="https://cdn.jsdelivr.net/gh/abhijhacodes/sankhya-backend/client-sdk.js" />
-                        </li>
-                        <li>
-                            <p>Copy your API key from project page</p>
-                        </li>
-                        <li>
-                            <p>Call the below method on any page in your web app, preferrably on load.</p>
-                        </li>
-                        <li>
-                            {" "}
-                            <p>
-                                Make sure the SDK script is loaded completely before you trying calling the below method
-                            </p>
-                            <Image
-                                src="/assets/guide/codeblock.svg"
-                                alt="See guide"
-                                height={360}
-                                width={640}
-                                className={styles.guide__img}
-                            />
+                            <CodeBlock language="html">
+                                {`<head>
+    <script 
+        src="https://cdn.jsdelivr.net/gh/abhijhacodes/sankhya-backend/client-sdk.js?key={YOUR_API_KEY}"
+        type="text/javascript"
+        defer    
+    />
+</head>`}
+                            </CodeBlock>
                         </li>
                         <li>
                             <p>
-                                <b>captureUserEvent</b> method returns a Promise, you just need to call it, however you
-                                want.
+                                Replace <b>YOUR_API_KEY</b> with the API key that you have got on project page.
                             </p>
                         </li>
                         <li>
@@ -205,7 +194,7 @@ export default function Guide() {
                                 that was used while creating the project. So, while testing it locally you will see the
                                 below error. Don't worry about it and deploy your project to production.
                             </p>
-                            <code>You are not authorized to perform this action</code>
+                            <CodeBlock language="">You are not authorized to perform this action</CodeBlock>
                         </li>
                         <li>
                             <p>
