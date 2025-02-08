@@ -19,16 +19,6 @@ export default function CTASection() {
         }
     }, [status]);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                if (typeof window !== "undefined") {
-                    await (window as any).sankhyaSDKv1.captureUserEvent(process.env.NEXT_PUBLIC_SANKHYA_API_KEY);
-                }
-            } catch (error) {}
-        })();
-    }, []);
-
     return (
         <>
             <Script src={`${process.env.NEXT_PUBLIC_SANKHYA_SDK_URL}`} strategy="beforeInteractive" />
